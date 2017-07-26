@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 class Class extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      switched: this.props.on
+    };
+  }
+
+  onClick = () => {
+    const state = !this.state.switched;
+    this.setState({switched: state});
+  }
+
   render() {
     const switchBox = {
       border: '1px solid gray',
@@ -39,10 +51,10 @@ class Class extends Component {
       width: '30px',
       height: '1.2em'
     }
-    if (this.props.on) {
-      return <div style={switchBox}><div style={switchOn}>On<div style={switchStyle}></div></div></div>
+    if (this.state.switched) {
+      return <div style={switchBox} onClick={this.onClick}><div style={switchOn}>On<div style={switchStyle}></div></div></div>
     } else {
-      return <div style={switchBox}><div style={switchOff}><div style={switchStyle}></div></div></div>
+      return <div style={switchBox} onClick={this.onClick}><div style={switchOff}><div style={switchStyle}></div></div></div>
     }
   }
 
