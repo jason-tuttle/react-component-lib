@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
 
-class Class extends Component {
+class Highlight extends Component {
   render() {
     const hColor = this.props.color;
     const highlightStyle = {
       backgroundColor: hColor
     }
     return (
-      <span style={highlightStyle}>{this.props.children}</span>
+      <span className="highlight" style={highlightStyle}>{this.props.children}</span>
     );
   }
 
 }
 
-export default Class;
+export default Highlight;

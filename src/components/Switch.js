@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Class extends Component {
+class Switch extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,12 +52,12 @@ class Class extends Component {
       height: '1.2em'
     }
     if (this.state.switched) {
-      return <div style={switchBox} onClick={this.onClick}><div style={switchOn}>On<div style={switchStyle}></div></div></div>
+      return <div className="switch-on" style={switchBox} onClick={this.onClick}><div style={switchOn}>On<div style={switchStyle}></div></div></div>
     } else {
-      return <div style={switchBox} onClick={this.onClick}><div style={switchOff}><div style={switchStyle}></div></div></div>
+      return <div className="switch-off" style={switchBox} onClick={this.onClick}><div style={switchOff}><div style={switchStyle}></div></div></div>
     }
   }
 
 }
 
-export default Class;
+export default Switch;

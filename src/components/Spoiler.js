@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-class Class extends Component {
+class Spoiler extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: this.props.open
+      open: this.props.open,
     };
   }
 
@@ -15,27 +15,61 @@ class Class extends Component {
   }
 
   render() {
+    const {
+        headerBgColor = 'gray',
+        headerColor = 'white',
+        maxHeight = '200px',
+        bordered = false,
+      } = this.props;
+
+    const animatedStyle = {
+      margin: '25px',
+      border: bordered ? '1px solid #aaa' : 'none',
+      borderRadius: '5px',
+      overflow: 'scroll',
+      maxHeight: maxHeight,
+      minHeight: '2em',
+      transition: 'all 0.25s'
+    }
+    const animatedStyleClosed = {
+      margin: '25px',
+      border: bordered ? '1px solid #aaa' : 'none',
+      borderRadius: '5px',
+      overflow: 'hidden',
+      maxHeight: '32px',
+      transition: 'all 0.25s'
+    }
     const headerStyle = {
-      backgroundColor: 'gray',
-      border: '1px solid black',
+      zIndex: '10',
+      position: 'sticky',
+      top: '0px',
+      backgroundColor: headerBgColor,
+      border: 'none',
+      fontSize: '1em',
       width: '100%',
+      padding: '5px',
+      color: headerColor,
+      fontWeight: 'bold'
     }
     const bodyStyleOpen = {
-      border: '1px solid gray',
-      paddingLeft: '10px'
+      opacity: 1.0,
+      paddingLeft: '10px',
+      transition: 'opacity 0.25s ease-in'
     }
     const bodyStyleClosed = {
-      display: 'none'
+      opacity: 0.0,
+      paddingLeft: '10px',
+      transition: 'opacity 0.25s ease-in'
     }
-    const show = this.state.open;
+    const {open} = this.state;
     return (
-      <div onClick={this.toggleDisplay}>
-        <div style={headerStyle}>{this.props.label}</div>
-        <div style={show ? bodyStyleOpen : bodyStyleClosed}>{this.props.children}</div>
+      <div style={open ? animatedStyle : animatedStyleClosed} onClick={this.toggleDisplay}>
+        <button style={headerStyle}>{this.props.label}</button>
+        <div style={open ? bodyStyleOpen : bodyStyleClosed}>{this.props.children}</div>
       </div>
     );
   }
 
 }
 
-export default Class;
+export default Spoiler;
